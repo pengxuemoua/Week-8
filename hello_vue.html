@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hello Vue</title>
+
+    <!-- vue js script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+    <!-- all the page that vue will manage -->
+        <h1>Hello Vue!</h1>
+
+        <p>Orginal Message: {{message}}</p>
+
+        <p>Added Exclamation Points: {{messageWithExclamationPoints}}</p>
+
+        <button v-on:click="addExclamation">Add !</button>
+        <button v-on:click="clearExclamation">Clear Exclamation Points</button>
+    
+    </div>
+    
+    <script>
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Hello',
+                    maxExclamtionPoints: 10,
+                    exclamtionPoints: 0
+                }
+            },
+            methods: {
+                addExclamation() {
+                    if (this.exclamtionPoints < this.maxExclamtionPoints) {
+                        this.exclamtionPoints++
+                    } else {
+                        alert('Can only have 10 exclamation points!')
+                    }
+                },
+                clearExclamation() {
+                    this.exclamtionPoints = 0
+                }
+            },
+            computed: {
+                messageWithExclamationPoints() {
+                    let messageWithPoints = this.message
+                    for (let x = 0; x < this.exclamtionPoints; x++) {
+                        messageWithPoints = messageWithPoints + '!'
+                    }
+                    return messageWithPoints
+                }
+            }
+        })
+
+        app.mount('#app') // css selector, need this code otherwise you won't see anything
+
+    </script>
+
+
+
+    
+</body>
+</html>

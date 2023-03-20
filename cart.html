@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Cart</title>
+
+    <!-- vue js script -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- simple css styles applied to the table data and table header-->
+    <style> 
+        td,th {
+            width: 25%;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    <!-- all the page that vue will manage -->
+    
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        
+
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ unitPrice }}</td>
+            <td>
+                <input type="number" v-model="quantity">
+            </td> <!-- todo, come back to this - add input -->
+            <td>${{ total }}</td> <!-- Since the total is not desribed in the data below, 
+                there will be an error. Certainly not the end of the world when you are creating
+                an app in the begining, but you will want to give it a value at some point. Once you do
+                the error will go away.-->
+        </tr>
+
+        </table>
+
+    </div>
+    
+    <script>
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    name: 'Hat',
+                    quantity: 1,
+                    unitPrice: 4.99
+                }
+            },
+            computed: {
+                total() {
+                    let totalprice = (this.quantity * this.unitPrice).toFixed(2) //total price is rounded, to decimal places
+                    return totalprice
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+
+
+
+    
+</body>
+</html>

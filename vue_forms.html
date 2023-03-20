@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Form</title>
+
+    <!-- vue js script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+    <!-- all the page that vue will manage -->
+    <h1>Hello Vue Forms</h1>
+
+    <label for="name">Please enter your name: </label>
+    <input v-model="name" id="name">
+
+    <!-- Use v-if with length greater than 2 -->
+    <p v-if="name.length > 2">
+        Your name is {{name}}
+        <button v-on:click="clear">Clear input</button>
+    </p>
+
+    <!-- V-else has to come right after v-if -->
+    <p v-else>
+        Waiting for user input.
+    </p>
+
+    </div>
+    
+    <script>
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    name: '' //empty string
+                }
+            },
+            methods: {
+                clear() {
+                    this.name = '' //sets name to empty string 
+                }
+            }
+        })
+
+        // Need to do app.mount in order to have vue data displayed
+        app.mount('#app')
+    </script>
+
+
+
+    
+</body>
+</html>
